@@ -690,6 +690,11 @@ namespace Lab_2_ЧМ
                 label_del2_aj.Text = Convert.ToString(del_ah[1]);
                 label_del3_aj.Text = Convert.ToString(del_a3);
 
+                for (int i = 0; i < 3; i++)
+                {
+                    x[i] = clone_vector[i];
+                }
+
                 for (int i = 0; i < 5; i++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -703,7 +708,7 @@ namespace Lab_2_ЧМ
 
                     for (int j = 0; j < 3; j++)
                     {
-                        max[j] = Math.Abs(x[j] - xs[j]);
+                        max[j] = Math.Abs(xs[j] - x[j]);
                     }
                     if ((max[0] < precision) && (max[1] < precision) && (max[2] < precision))
                     {
