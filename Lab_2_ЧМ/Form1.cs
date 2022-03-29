@@ -120,6 +120,49 @@ namespace Lab_2_ЧМ
             label_x1r.Text = "X1";
             label_x2r.Text = "X2";
             label_x3r.Text = "X3";
+
+            label_a11l.Text = "a11";
+            label_a12l.Text = "a12";
+            label_a13l.Text = "a13";
+            label_a21l.Text = "a21";
+            label_a22l.Text = "a22";
+            label_a23l.Text = "a23";
+            label_a31l.Text = "a31";
+            label_a32l.Text = "a32";
+            label_a33l.Text = "a33";
+
+            label_a11u.Text = "a11";
+            label_a12u.Text = "a12";
+            label_a13u.Text = "a13";
+            label_a21u.Text = "a21";
+            label_a22u.Text = "a22";
+            label_a23u.Text = "a23";
+            label_a31u.Text = "a31";
+            label_a32u.Text = "a32";
+            label_a33u.Text = "a33";
+
+            label_x1lu.Text = "X1";
+            label_x2lu.Text = "X2";
+            label_x3lu.Text = "X3";
+
+            label_a11j.Text = "a11";
+            label_a12j.Text = "a12";
+            label_a13j.Text = "a13";
+            label_a21j.Text = "a21";
+            label_a22j.Text = "a22";
+            label_a23j.Text = "a23";
+            label_a31j.Text = "a31";
+            label_a32j.Text = "a32";
+            label_a33j.Text = "a33";
+            
+            label_x1j.Text = "X1";
+            label_x2j.Text = "X2";
+            label_x3j.Text = "X3";
+
+            label_b1j.Text = "B1";
+            label_b2j.Text = "B2";
+            label_b3j.Text = "B3";
+
         }
 
         private void button_calculate_Click(object sender, EventArgs e)
@@ -147,6 +190,7 @@ namespace Lab_2_ЧМ
             //Метод Гауса 
             {
                 double[,] clone_matrix_gaus = new double[3, 4];
+
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 4; j++)
@@ -156,73 +200,64 @@ namespace Lab_2_ЧМ
                 }
 
                 double a1, a2, a3;
+                double[] a = new double[2];
 
                 a1 = 1 / clone_matrix_gaus[0, 0];
+                a[0] = -clone_matrix_gaus[1, 0];
+                a[1] = -clone_matrix_gaus[2, 0];
 
                 for (int i = 0; i < 4; i++)
                 {
                     clone_matrix_gaus[0, i] = a1 * clone_matrix_gaus[0, i];
                 }
 
-                a2 = -clone_matrix_gaus[1, 0];
-
-                for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 2; j++)
                 {
-                    clone_matrix_gaus[1, i] = clone_matrix_gaus[1, i] + clone_matrix_gaus[0, i] * a2;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        clone_matrix_gaus[j + 1, i] = clone_matrix_gaus[j + 1, i] + clone_matrix_gaus[0, i] * a[j];
+                    }
                 }
 
-                a3 = -clone_matrix_gaus[2, 0];
-
-                for (int i = 0; i < 4; i++)
-                {
-                    clone_matrix_gaus[2, i] = clone_matrix_gaus[2, i] + clone_matrix_gaus[0, i] * a3;
-                }
-                
-                double b1, b2, b3, b4;
+                double b1, b2, b3;
+                double[] b = new double[2];
 
                 b1 = 1 / clone_matrix_gaus[1, 1];
+                b[0] = -clone_matrix_gaus[0, 1];
+                b[1] = -clone_matrix_gaus[2, 1];
 
                 for (int i = 0; i < 4; i++)
                 {
                     clone_matrix_gaus[1, i] = b1 * clone_matrix_gaus[1, i];
                 }
-                
-                b4 = -clone_matrix_gaus[0, 1];
 
-                for (int i = 1; i < 4; i++)
+                for (int j = 0, l = 0; l < 2; j += 2, l++)
                 {
-                    clone_matrix_gaus[0, i] = clone_matrix_gaus[0, i] + clone_matrix_gaus[1, i] * b4;
-                }
-                
-                b2 = -clone_matrix_gaus[2, 1];
-
-                for (int i = 1; i < 4; i++)
-                {
-                    clone_matrix_gaus[2, i] = clone_matrix_gaus[2, i] + clone_matrix_gaus[1, i] * b2;
+                    for (int i = 1; i < 4; i++)
+                    {
+                        clone_matrix_gaus[j, i] = clone_matrix_gaus[j, i] + clone_matrix_gaus[1, i] * b[l];
+                    }
                 }
 
-                b3 = 1 / clone_matrix_gaus[2, 2];
+                double c1;
+                double[] c = new double[2];
+
+                c1 = 1 / clone_matrix_gaus[2, 2];
+                c[0] = -clone_matrix_gaus[0, 2];
+                c[1] = -clone_matrix_gaus[1, 2];
 
                 for (int i = 0; i < 4; i++)
                 {
-                    clone_matrix_gaus[2, i] = b3 * clone_matrix_gaus[2, i];
+                    clone_matrix_gaus[2, i] = c1 * clone_matrix_gaus[2, i];
                 }
 
-                double c1, c2;
-
-                c1 = -clone_matrix_gaus[1, 2];
-                c2 = -clone_matrix_gaus[0, 2];
-
-                for (int i = 2; i < 4; i++)
+                for (int j = 0; j < 2; j++)
                 {
-                    clone_matrix_gaus[1, i] = clone_matrix_gaus[1, i] + clone_matrix_gaus[2, i] * c1;
+                    for (int i = 2; i < 4; i++)
+                    {
+                        clone_matrix_gaus[j, i] = clone_matrix_gaus[j, i] + clone_matrix_gaus[2, i] * c[j];
+                    }
                 }
-
-                for (int i = 2; i < 4; i++)
-                {
-                    clone_matrix_gaus[0, i] = clone_matrix_gaus[0, i] + clone_matrix_gaus[2, i] * c2;
-                }
-
 
                 label_a11.Text = Convert.ToString(clone_matrix_gaus[0, 0]);
                 label_a12.Text = Convert.ToString(clone_matrix_gaus[0, 1]);
@@ -457,6 +492,14 @@ namespace Lab_2_ЧМ
             }
             //Метод LU розкладу
             {
+                double[,] matrix_l = new double[3, 3]
+                {
+                    {1, 0, 0},
+                    {0, 1, 0},
+                    {0, 0, 1}
+                };
+
+                double[,] matrix_u = new double[3, 3];
                 double[,] clone_matrix_lu = new double[3, 3];
                 for (int i = 0; i < 3; i++)
                 {
@@ -466,6 +509,13 @@ namespace Lab_2_ЧМ
                     }
                 }
 
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        matrix_u[i, j] = clone_matrix_lu[i, j];
+                    }
+                }
                 double[] clone_vector = new double[3];
 
                 for (int i = 0; i < vector.Length; i++)
@@ -473,60 +523,93 @@ namespace Lab_2_ЧМ
                     clone_vector[i] = vector[i];
                 }
 
-                double[,] C1;
+                //
+                //
+                //
+                
+                double a1;
+                double[] a = new double[2];
+                double[] a_l = new double[2];
 
-                clone_matrix_lu = recMatB(clone_matrix_lu, out C1);
+                a[0] = -matrix_u[1, 0] / matrix_u[0, 0];
+                a[1] = -matrix_u[2, 0] / matrix_u[0, 0];
+                a_l[0] = -a[0];
+                a_l[1] = -a[1];
 
-            }
 
-        }
-
-        private static double[,] recMatB(double[,] matrix, out double[,] C)
-        {
-            double[,] B = new double[matrix.GetLength(0), matrix.GetLength(1)];
-
-            C = new double[matrix.GetLength(0), matrix.GetLength(1)];
-
-            for (int i = 0, j = 2; i < matrix.GetLength(0); i++, j--)
-            {
-                for (int l = 0; l < i + 1; l++)
+                for (int j = 0; j < 2; j++)
                 {
-                    B[l, 0] = matrix[l, 0];
-                    if (i > 0)
+                    for (int i = 0; i < 3; i++)
                     {
-                        double sum = 0;
-                        //B[i, l];
-                        for (int k = 0; k < l; k++)
-                        {
-                            sum = B[i, k] * C[k, l] + sum;
-                        }
-                        B[i, l] = matrix[i, l] - sum;
-                        sum = 0;
+                        matrix_u[j + 1, i] = matrix_u[j + 1, i] + matrix_u[0, i] * a[j];
                     }
                 }
 
-                for (int l = 0; l < j + 1; l++)
-                {
-                    C[0, l] = matrix[0, l] / B[0, 0];
-                    if (j < 2)
-                    {
-                        for (int m = 2; m > i - 1; m--)
-                        {
-                            //c[j,l]
-                            double sum = 0;
-                            for (int k = 0; k < i; k++)
-                            {
-                                sum = B[i, k] * C[k, m] + sum;
-                            }
-                            C[i, m] = (1 / B[i, i]) * (matrix[i, m] - sum);
-                            sum = 0;
-                        }
-                    }
-                }
-            }
-            return B;
-        }
+                double[] b = new double[2];
+                double[] b_l = new double[2];
 
+                b[1] = -matrix_u[2, 1] / matrix_u[1, 1];
+                b_l[1] = -b[1];
+
+                for (int i = 0; i < 3; i++)
+                {
+                    matrix_u[2, i] = matrix_u[2, i] + matrix_u[1, i] * b[1];
+                }
+
+                matrix_l[1, 0] = a_l[0];
+                matrix_l[2, 0] = a_l[1];     
+                matrix_l[2, 1] = b_l[1];
+                //
+                //
+                //
+                double[] y = new double[3];
+
+                y[0] = matrix_l[0, 0] * clone_vector[0];
+                y[1] = clone_vector[1] - matrix_l[1, 0] * y[0];
+                y[2] = clone_vector[2] - (matrix_l[2, 0] * y[0]) - (matrix_l[2, 1] * y[1]);
+
+                double[] x = new double[3];
+                x[2] = y[2] / matrix_u[2, 2];
+                x[1] = (y[1] - matrix_u[1, 2] * x[2]) / matrix_u[1, 1];
+                x[0] = ((y[0] - matrix_u[0, 1] * x[1]) - (matrix_u[0, 2] * x[2])) / matrix_u[0, 0];
+                
+                
+
+                label26.Text = Convert.ToString(y[0]);
+                label25.Text = Convert.ToString(y[1]);
+                label_a31j.Text = Convert.ToString(y[2]);
+
+                label_a11l.Text = Convert.ToString(matrix_l[0, 0]);
+                label_a12l.Text = Convert.ToString(matrix_l[0, 1]);
+                label_a13l.Text = Convert.ToString(matrix_l[0, 2]);
+                label_a21l.Text = Convert.ToString(matrix_l[1, 0]);
+                label_a22l.Text = Convert.ToString(matrix_l[1, 1]);
+                label_a23l.Text = Convert.ToString(matrix_l[1, 2]);
+                label_a31l.Text = Convert.ToString(matrix_l[2, 0]);
+                label_a32l.Text = Convert.ToString(matrix_l[2, 1]);
+                label_a33l.Text = Convert.ToString(matrix_l[2, 2]);
+                
+                label_a11u.Text = Convert.ToString(matrix_u[0, 0]);
+                label_a12u.Text = Convert.ToString(matrix_u[0, 1]);
+                label_a13u.Text = Convert.ToString(matrix_u[0, 2]);
+                label_a21u.Text = Convert.ToString(matrix_u[1, 0]);
+                label_a22u.Text = Convert.ToString(matrix_u[1, 1]);
+                label_a23u.Text = Convert.ToString(matrix_u[1, 2]);
+                label_a31u.Text = Convert.ToString(matrix_u[2, 0]);
+                label_a32u.Text = Convert.ToString(matrix_u[2, 1]);
+                label_a33u.Text = Convert.ToString(matrix_u[2, 2]);
+                
+                label_x1lu.Text = Convert.ToString(x[0]);
+                label_x2lu.Text = Convert.ToString(x[1]);
+                label_x3lu.Text = Convert.ToString(x[2]);
+                
+            }
+            //Метод Якобі
+            { 
+            
+            }
+        }
+       
         // Знаходження визначника матриці
         static public double del_func(double[,] matrix) 
         {
