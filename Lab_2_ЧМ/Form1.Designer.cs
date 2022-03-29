@@ -535,7 +535,7 @@ namespace Lab_2_ЧМ
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 20);
             this.label10.TabIndex = 48;
-            this.label10.Text = "ξ =";
+            this.label10.Text = "e =";
             // 
             // label11
             // 
@@ -1293,9 +1293,9 @@ namespace Lab_2_ЧМ
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label24.Location = new System.Drawing.Point(308, 754);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(21, 20);
+            this.label24.Size = new System.Drawing.Size(34, 20);
             this.label24.TabIndex = 159;
-            this.label24.Text = "U";
+            this.label24.Text = "U =";
             // 
             // label_a33u
             // 
@@ -1393,9 +1393,9 @@ namespace Lab_2_ЧМ
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label35.Location = new System.Drawing.Point(314, 674);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(18, 20);
+            this.label35.Size = new System.Drawing.Size(31, 20);
             this.label35.TabIndex = 149;
-            this.label35.Text = "L";
+            this.label35.Text = "L =";
             // 
             // label37
             // 
@@ -1573,9 +1573,9 @@ namespace Lab_2_ЧМ
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label26.Location = new System.Drawing.Point(314, 854);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(18, 20);
+            this.label26.Size = new System.Drawing.Size(31, 20);
             this.label26.TabIndex = 177;
-            this.label26.Text = "a";
+            this.label26.Text = "a =";
             // 
             // label27
             // 

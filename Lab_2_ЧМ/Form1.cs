@@ -169,6 +169,7 @@ namespace Lab_2_ЧМ
         {
             double[,] matrix = new double[3, 4];
             double[] vector = new double[3];
+            double precision = Convert.ToDouble(textBox_error.Text);
 
             matrix[0, 0] = Convert.ToDouble(textBox_a11.Text);
             matrix[0, 1] = Convert.ToDouble(textBox_a12.Text);
@@ -522,10 +523,6 @@ namespace Lab_2_ЧМ
                 {
                     clone_vector[i] = vector[i];
                 }
-
-                //
-                //
-                //
                 
                 double a1;
                 double[] a = new double[2];
@@ -559,9 +556,7 @@ namespace Lab_2_ЧМ
                 matrix_l[1, 0] = a_l[0];
                 matrix_l[2, 0] = a_l[1];     
                 matrix_l[2, 1] = b_l[1];
-                //
-                //
-                //
+
                 double[] y = new double[3];
 
                 y[0] = matrix_l[0, 0] * clone_vector[0];
@@ -572,12 +567,6 @@ namespace Lab_2_ЧМ
                 x[2] = y[2] / matrix_u[2, 2];
                 x[1] = (y[1] - matrix_u[1, 2] * x[2]) / matrix_u[1, 1];
                 x[0] = ((y[0] - matrix_u[0, 1] * x[1]) - (matrix_u[0, 2] * x[2])) / matrix_u[0, 0];
-                
-                
-
-                label26.Text = Convert.ToString(y[0]);
-                label25.Text = Convert.ToString(y[1]);
-                label_a31j.Text = Convert.ToString(y[2]);
 
                 label_a11l.Text = Convert.ToString(matrix_l[0, 0]);
                 label_a12l.Text = Convert.ToString(matrix_l[0, 1]);
@@ -602,11 +591,66 @@ namespace Lab_2_ЧМ
                 label_x1lu.Text = Convert.ToString(x[0]);
                 label_x2lu.Text = Convert.ToString(x[1]);
                 label_x3lu.Text = Convert.ToString(x[2]);
-                
             }
             //Метод Якобі
-            { 
-            
+            {
+                double[,] clone_matrix_j = new double[3, 4];
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        clone_matrix_j[i, j] = matrix[i, j];
+                    }
+                }
+
+                double[] x = new double[3];
+                double[] xs = new double[3];
+                double[] max = new double[3];
+
+                for (int i = 0; i < 3; i++)
+                {
+                    x[i] = vector[i] / clone_matrix_j[i, i];
+                }
+
+                for (int i = 0; i < 1000; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        xs[j] = x[j];
+                    }
+
+                    x[0] = (vector[0] - clone_matrix_j[0, 1] * x[1] - clone_matrix_j[0, 2] * x[2]) / clone_matrix_j[0, 0];
+                    x[1] = (vector[1] - clone_matrix_j[1, 0] * x[0] - clone_matrix_j[1, 2] * x[2]) / clone_matrix_j[1, 1];
+                    x[2] = (vector[2] - clone_matrix_j[2, 0] * x[1] - clone_matrix_j[2, 2] * x[1]) / clone_matrix_j[2, 2];
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        max[j] = Math.Abs(x[j] - xs[j]);
+                    }
+                    if (max[0] <= precision && max[1] <= precision && max[2] <= precision)
+                    {
+                        break;
+                    }
+                }
+
+                label_a11j.Text = Convert.ToString(clone_matrix_j[0, 0]);
+                label_a12j.Text = Convert.ToString(clone_matrix_j[0, 1]);
+                label_a13j.Text = Convert.ToString(clone_matrix_j[0, 2]);
+                label_a21j.Text = Convert.ToString(clone_matrix_j[1, 0]);
+                label_a22j.Text = Convert.ToString(clone_matrix_j[1, 1]);
+                label_a23j.Text = Convert.ToString(clone_matrix_j[1, 2]);
+                label_a31j.Text = Convert.ToString(clone_matrix_j[2, 0]);
+                label_a32j.Text = Convert.ToString(clone_matrix_j[2, 1]);
+                label_a33j.Text = Convert.ToString(clone_matrix_j[2, 2]);
+
+                label_x1j.Text = Convert.ToString(x[0]);
+                label_x2j.Text = Convert.ToString(x[1]);
+                label_x3j.Text = Convert.ToString(x[2]);
+
+                label_b1j.Text = Convert.ToString(max[0]);
+                label_b2j.Text = Convert.ToString(max[1]);
+                label_b3j.Text = Convert.ToString(max[2]);
+
             }
         }
        
