@@ -191,6 +191,12 @@ namespace Lab_2_ЧМ
             this.label_b3j = new System.Windows.Forms.Label();
             this.label_b2j = new System.Windows.Forms.Label();
             this.label_b1j = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label_del1_aj = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label_del2_aj = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label_del3_aj = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_clear
@@ -1777,11 +1783,77 @@ namespace Lab_2_ЧМ
             this.label_b1j.TabIndex = 179;
             this.label_b1j.Text = "b1";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label31.Location = new System.Drawing.Point(296, 914);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(60, 20);
+            this.label31.TabIndex = 187;
+            this.label31.Text = "||a||1 =";
+            // 
+            // label_del1_aj
+            // 
+            this.label_del1_aj.AutoSize = true;
+            this.label_del1_aj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_del1_aj.Location = new System.Drawing.Point(362, 914);
+            this.label_del1_aj.Name = "label_del1_aj";
+            this.label_del1_aj.Size = new System.Drawing.Size(38, 20);
+            this.label_del1_aj.TabIndex = 186;
+            this.label_del1_aj.Text = "||a||";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label40.Location = new System.Drawing.Point(296, 934);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(60, 20);
+            this.label40.TabIndex = 191;
+            this.label40.Text = "||a||2 =";
+            // 
+            // label_del2_aj
+            // 
+            this.label_del2_aj.AutoSize = true;
+            this.label_del2_aj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_del2_aj.Location = new System.Drawing.Point(362, 934);
+            this.label_del2_aj.Name = "label_del2_aj";
+            this.label_del2_aj.Size = new System.Drawing.Size(38, 20);
+            this.label_del2_aj.TabIndex = 190;
+            this.label_del2_aj.Text = "||a||";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label44.Location = new System.Drawing.Point(296, 954);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(60, 20);
+            this.label44.TabIndex = 195;
+            this.label44.Text = "||a||3 =";
+            // 
+            // label_del3_aj
+            // 
+            this.label_del3_aj.AutoSize = true;
+            this.label_del3_aj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_del3_aj.Location = new System.Drawing.Point(362, 954);
+            this.label_del3_aj.Name = "label_del3_aj";
+            this.label_del3_aj.Size = new System.Drawing.Size(38, 20);
+            this.label_del3_aj.TabIndex = 194;
+            this.label_del3_aj.Text = "||a||";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1103, 1061);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.label_del3_aj);
+            this.Controls.Add(this.label40);
+            this.Controls.Add(this.label_del2_aj);
+            this.Controls.Add(this.label31);
+            this.Controls.Add(this.label_del1_aj);
             this.Controls.Add(this.label47);
             this.Controls.Add(this.label48);
             this.Controls.Add(this.label49);
@@ -2115,6 +2187,12 @@ namespace Lab_2_ЧМ
         private System.Windows.Forms.Label label_b3j;
         private System.Windows.Forms.Label label_b2j;
         private System.Windows.Forms.Label label_b1j;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label_del1_aj;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label_del2_aj;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label_del3_aj;
     }
 }
 

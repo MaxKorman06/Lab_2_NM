@@ -200,7 +200,7 @@ namespace Lab_2_ЧМ
                     }
                 }
 
-                double a1, a2, a3;
+                double a1;
                 double[] a = new double[2];
 
                 a1 = 1 / clone_matrix_gaus[0, 0];
@@ -220,7 +220,7 @@ namespace Lab_2_ЧМ
                     }
                 }
 
-                double b1, b2, b3;
+                double b1;
                 double[] b = new double[2];
 
                 b1 = 1 / clone_matrix_gaus[1, 1];
@@ -524,7 +524,6 @@ namespace Lab_2_ЧМ
                     clone_vector[i] = vector[i];
                 }
                 
-                double a1;
                 double[] a = new double[2];
                 double[] a_l = new double[2];
 
@@ -594,42 +593,40 @@ namespace Lab_2_ЧМ
             }
             //Метод Якобі
             {
-                double[,] clone_matrix_j = new double[3, 4];
+                double[,] clone_matrix_j = new double[3, 3];
+                double[] clone_vector = new double[3];
+
+                // копія вектора + його приведення до потрібного виду
                 for (int i = 0; i < 3; i++)
                 {
-                    for (int j = 0; j < 4; j++)
+                    clone_vector[i] = vector[i];
+                    clone_vector[i] = clone_vector[i] / matrix[i, i];
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
                     {
                         clone_matrix_j[i, j] = matrix[i, j];
                     }
                 }
 
-                double[] x = new double[3];
-                double[] xs = new double[3];
-                double[] max = new double[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        clone_matrix_j[i, j] = -(clone_matrix_j[i, j] / matrix[i, i]);
+                    }
+                }
 
                 for (int i = 0; i < 3; i++)
                 {
-                    x[i] = vector[i] / clone_matrix_j[i, i];
-                }
-
-                for (int i = 0; i < 1000; i++)
-                {
                     for (int j = 0; j < 3; j++)
                     {
-                        xs[j] = x[j];
-                    }
-
-                    x[0] = (vector[0] - clone_matrix_j[0, 1] * x[1] - clone_matrix_j[0, 2] * x[2]) / clone_matrix_j[0, 0];
-                    x[1] = (vector[1] - clone_matrix_j[1, 0] * x[0] - clone_matrix_j[1, 2] * x[2]) / clone_matrix_j[1, 1];
-                    x[2] = (vector[2] - clone_matrix_j[2, 0] * x[1] - clone_matrix_j[2, 2] * x[1]) / clone_matrix_j[2, 2];
-
-                    for (int j = 0; j < 3; j++)
-                    {
-                        max[j] = Math.Abs(x[j] - xs[j]);
-                    }
-                    if (max[0] <= precision && max[1] <= precision && max[2] <= precision)
-                    {
-                        break;
+                        if (i == j)
+                        {
+                            clone_matrix_j[i, j] = 0;
+                        }
                     }
                 }
 
@@ -643,14 +640,85 @@ namespace Lab_2_ЧМ
                 label_a32j.Text = Convert.ToString(clone_matrix_j[2, 1]);
                 label_a33j.Text = Convert.ToString(clone_matrix_j[2, 2]);
 
+                double[] x = new double[3] { 0, 0, 0 };
+                double[] xs = new double[3] { 0, 0, 0 };
+                double[] max = new double[3];
+
+                double[] del_a1 = new double[4] { 0, 0, 0 ,0};
+                double[] del_a2 = new double[4] { 0, 0, 0 ,0};
+                double del_a3 = 0;
+                double[] del_ah = new double[2] { 0, 0 };
+
+                //Знаходження першої канонічної норми по рядкам
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        del_a1[i+1] += Math.Abs(clone_matrix_j[i, j]);
+                    }
+                    if (del_a1[i+1] > del_ah[0])
+                    {
+                        del_ah[0] = del_a1[i+1];
+                    }
+                }
+
+                // Знаходження 2 канонічної норми по стовпцям
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        del_a2[i + 1] += Math.Abs(clone_matrix_j[j, i]);
+                    }
+                    if (del_a2[i + 1] > del_ah[1])
+                    {
+                        del_ah[1] = del_a2[i + 1];
+                    }
+                }
+
+                // Знаходження 3 канонічної норми
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        del_a3 += Math.Pow(clone_matrix_j[i, j], 2);
+                    }
+                }
+
+                del_a3 = Math.Sqrt(del_a3);
+
+                label_del1_aj.Text = Convert.ToString(del_ah[0]);
+                label_del2_aj.Text = Convert.ToString(del_ah[1]);
+                label_del3_aj.Text = Convert.ToString(del_a3);
+
+                for (int i = 0; i < 5; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        xs[j] = x[j];
+                    }
+
+                    x[0] = clone_vector[0] + clone_matrix_j[0, 1] * x[1] + clone_matrix_j[0, 2] * x[2];
+                    x[1] = clone_vector[1] + clone_matrix_j[1, 0] * x[0] + clone_matrix_j[1, 2] * x[2];
+                    x[2] = clone_vector[2] + clone_matrix_j[2, 0] * x[0] + clone_matrix_j[2, 1] * x[1];
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        max[j] = Math.Abs(x[j] - xs[j]);
+                    }
+                    if ((max[0] < precision) && (max[1] < precision) && (max[2] < precision))
+                    {
+                        break;
+                    }
+                }
+
+
                 label_x1j.Text = Convert.ToString(x[0]);
                 label_x2j.Text = Convert.ToString(x[1]);
                 label_x3j.Text = Convert.ToString(x[2]);
 
-                label_b1j.Text = Convert.ToString(max[0]);
-                label_b2j.Text = Convert.ToString(max[1]);
-                label_b3j.Text = Convert.ToString(max[2]);
-
+                label_b1j.Text = Convert.ToString(clone_vector[0]);
+                label_b2j.Text = Convert.ToString(clone_vector[1]);
+                label_b3j.Text = Convert.ToString(clone_vector[2]);
             }
         }
        
